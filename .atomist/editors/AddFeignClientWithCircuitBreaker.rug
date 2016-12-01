@@ -1,0 +1,60 @@
+/*
+ * Copyright 2002-2016 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+@tag "spring-boot"
+@tag "spring-cloud"
+@tag "spring"
+@tag "java"
+@description "Adds a simple Feign Client interface in the default Spring Boot Application Class location including a default service-consuming method and Circuit Breaker fallback method"
+editor AddFeignClientWithCircuitBreaker
+
+precondition IsSpringBoot
+precondition IsMaven
+
+@description "Root address (i.e. http://localhost) or service name (i.e. mymicroservice) of the service being consumed"
+@displayName "Consumed Endpoint Address"
+param consumed_endpoint_address: .*
+
+@description "Name of the new Feign Java interface"
+@displayName "Feign Interface"
+param feign_interface: @java_class
+
+@description "Relative URL to the actual endpoint being invoked on the consumed microservice (i.e. /myendpoint)"
+@displayName "Relative Endpoint URL"
+param invoking_relative_endpoint_url: .*
+
+@description "Name of the Java method that will then invoke the consumed endpoint."
+@displayName "Endpoint Invoking Method"
+param endpoint_invoking_method: @java_identifier
+
+let feign_template = "FeignClientInterfaceWithCircuitBreakerFallback.vm"
+
+AddFeign
+AddHystrix
+
+with spring.bootProject p begin
+  do merge feign_template to {
+    var fullyQualifiedNameOfApplicationClass = p.applicationClassFQN();
+    var lastIndexOfPeriod = fullyQualifiedNameOfApplicationClass.lastIndexOf(".");
+    var defaultPackageForFeignClient = fullyQualifiedNameOfApplicationClass.substring(0, lastIndexOfPeriod);
+    var defaultDirectoryForFeignClient = defaultPackageForFeignClient.replace(/\./g, "/");
+    return "/src/main/java/" + defaultDirectoryForFeignClient + "/" + feign_interface + ".java";
+  }
+  do replace "{{feign_interface_package}}" {
+    var fullyQualifiedNameOfApplicationClass = p.applicationClassFQN();
+    var lastIndexOfPeriod = fullyQualifiedNameOfApplicationClass.lastIndexOf(".");
+    return fullyQualifiedNameOfApplicationClass.substring(0, lastIndexOfPeriod);
+  }
+end

@@ -1,0 +1,12 @@
+package {{feign_interface_package}};
+
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+
+@FeignClient(name = "${consumed_endpoint_address}")
+public interface $feign_interface {
+    @RequestMapping(value = "$invoking_relative_endpoint_url", method = GET)
+    String $endpoint_invoking_method();
+}
