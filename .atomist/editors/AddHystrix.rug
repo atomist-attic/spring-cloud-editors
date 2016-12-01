@@ -17,7 +17,7 @@
 @tag "spring-cloud"
 @tag "spring"
 @tag "java"
-@description "Adds support for Netflix Hystrix to your Spring Boot project"
+@description "adds support for Netflix Hystrix to your Spring Boot project"
 editor AddHystrix
 
 precondition IsSpringBoot

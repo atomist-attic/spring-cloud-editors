@@ -17,7 +17,7 @@
 @tag "spring-cloud"
 @tag "spring"
 @tag "java"
-@description "Adds a simple Feign Client interface in the default Spring Boot Application Class location, including a default service-consuming method to your Spring Boot project"
+@description "adds a simple Feign Client interface in the default Spring Boot Application Class location, including a default service-consuming method to your Spring Boot project"
 editor AddFeignClient
 
 precondition IsSpringBoot

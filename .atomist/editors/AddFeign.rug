@@ -17,7 +17,7 @@
 @tag "spring-cloud"
 @tag "spring"
 @tag "java"
-@description "Adds support for Feign clients to your Spring Boot project"
+@description "adds support for Feign clients to your Spring Boot project"
 editor AddFeign
 
 precondition IsSpringBoot
