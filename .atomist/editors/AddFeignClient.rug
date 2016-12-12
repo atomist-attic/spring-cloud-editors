@@ -25,7 +25,7 @@ precondition IsMaven
 
 @description "Root address (i.e. http://localhost) or service name (i.e. mymicroservice) of the service being consumed"
 @displayName "Consumed Endpoint Address"
-param consumed_endpoint_address: .*
+param consumed_endpoint_address: ^.*$
 
 @description "Name of the new Feign Java interface"
 @displayName "Feign Interface"
@@ -33,7 +33,7 @@ param feign_interface: @java_class
 
 @description "Relative URL to the actual endpoint being invoked on the consumed microservice (i.e. /myendpoint)"
 @displayName "Relative Endpoint URL"
-param invoking_relative_endpoint_url: .*
+param invoking_relative_endpoint_url: ^.*$
 
 @description "Name of the Java method that will then invoke the consumed endpoint."
 @displayName "Endpoint Invoking Method"
