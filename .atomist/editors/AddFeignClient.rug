@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2016 the original author or authors.
+ * Copyright © 2016 Atomist, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+@description "adds a simple Feign Client interface in the default Spring Boot Application Class location, including a default service-consuming method to your Spring Boot project"
 @tag "spring-boot"
 @tag "spring-cloud"
 @tag "spring"
 @tag "java"
-@description "adds a simple Feign Client interface in the default Spring Boot Application Class location, including a default service-consuming method to your Spring Boot project"
 editor AddFeignClient
 
 precondition IsSpringBoot
