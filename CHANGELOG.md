@@ -7,4 +7,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
-[Unreleased]: https://github.com/atomist-rugs/spring-cloud-editors/compare/e8738a5...HEAD
+[Unreleased]: https://github.com/atomist-rugs/spring-cloud-editors/compare/9cba4ee...HEAD
