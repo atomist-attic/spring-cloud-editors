@@ -111,12 +111,12 @@ when
 
 then
   fileExists "pom.xml"
-  and fileContains "pom.xml" "<groupId>org.springframework.cloud</groupId>"
-  and fileContains "pom.xml" "<artifactId>spring-cloud-starter-feign</artifactId>"
-  and fileContains "pom.xml" "<artifactId>spring-cloud-dependencies</artifactId>"
-  and fileContains "pom.xml" "<version>Camden.RELEASE</version>"
-  and fileContains "src/main/java/com/atomist/springrest/SpringRestApplication.java" "@EnableFeignClients"
-  and fileContains "src/main/java/com/atomist/springrest/SpringRestApplication.java" "import org.springframework.cloud.netflix.feign.EnableFeignClients;"
+    and fileContains "pom.xml" "<groupId>org.springframework.cloud</groupId>"
+    and fileContains "pom.xml" "<artifactId>spring-cloud-starter-feign</artifactId>"
+    and fileContains "pom.xml" "<artifactId>spring-cloud-dependencies</artifactId>"
+    and fileContains "pom.xml" "<version>Camden.RELEASE</version>"
+    and fileContains "src/main/java/com/atomist/springrest/SpringRestApplication.java" "@EnableFeignClients"
+    and fileContains "src/main/java/com/atomist/springrest/SpringRestApplication.java" "import org.springframework.cloud.netflix.feign.EnableFeignClients;"
 
 scenario AddFeign should not work on an empty project
 

@@ -118,24 +118,24 @@ when
 
 then
   fileExists resultFile
-  and fileContains resultFile "package com.atomist.springrest;"
-  and fileContains resultFile consumed_endpoint_address
-  and fileContains resultFile { "interface " + feign_interface }
-  and fileContains resultFile invoking_relative_endpoint_url
-  and fileContains resultFile { "String " + endpoint_invoking_method + "();"}
-  and fileExists "pom.xml"
-  and fileContains "pom.xml" "<groupId>org.springframework.cloud</groupId>"
-  and fileContains "pom.xml" "<artifactId>spring-cloud-starter-feign</artifactId>"
-  and fileContains "pom.xml" "<artifactId>spring-cloud-dependencies</artifactId>"
-  and fileContains "pom.xml" "<version>Camden.RELEASE</version>"
-  and fileContains "src/main/java/com/atomist/springrest/SpringRestApplication.java" "@EnableFeignClients"
-  and fileContains "src/main/java/com/atomist/springrest/SpringRestApplication.java" "import org.springframework.cloud.netflix.feign.EnableFeignClients;"
-  and fileContains "pom.xml" "<groupId>org.springframework.cloud</groupId>"
-  and fileContains "pom.xml" "<artifactId>spring-cloud-starter-hystrix</artifactId>"
-  and fileContains "pom.xml" "<artifactId>spring-cloud-dependencies</artifactId>"
-  and fileContains "pom.xml" "<version>Camden.RELEASE</version>"
-  and fileContains "src/main/java/com/atomist/springrest/SpringRestApplication.java" "@EnableCircuitBreaker"
-  and fileContains "src/main/java/com/atomist/springrest/SpringRestApplication.java" "import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;"
+    and fileContains resultFile "package com.atomist.springrest;"
+    and fileContains resultFile consumed_endpoint_address
+    and fileContains resultFile { "interface " + feign_interface }
+    and fileContains resultFile invoking_relative_endpoint_url
+    and fileContains resultFile { "String " + endpoint_invoking_method + "();"}
+    and fileExists "pom.xml"
+    and fileContains "pom.xml" "<groupId>org.springframework.cloud</groupId>"
+    and fileContains "pom.xml" "<artifactId>spring-cloud-starter-feign</artifactId>"
+    and fileContains "pom.xml" "<artifactId>spring-cloud-dependencies</artifactId>"
+    and fileContains "pom.xml" "<version>Camden.RELEASE</version>"
+    and fileContains "src/main/java/com/atomist/springrest/SpringRestApplication.java" "@EnableFeignClients"
+    and fileContains "src/main/java/com/atomist/springrest/SpringRestApplication.java" "import org.springframework.cloud.netflix.feign.EnableFeignClients;"
+    and fileContains "pom.xml" "<groupId>org.springframework.cloud</groupId>"
+    and fileContains "pom.xml" "<artifactId>spring-cloud-starter-hystrix</artifactId>"
+    and fileContains "pom.xml" "<artifactId>spring-cloud-dependencies</artifactId>"
+    and fileContains "pom.xml" "<version>Camden.RELEASE</version>"
+    and fileContains "src/main/java/com/atomist/springrest/SpringRestApplication.java" "@EnableCircuitBreaker"
+    and fileContains "src/main/java/com/atomist/springrest/SpringRestApplication.java" "import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;"
 
 
 scenario AddFeignClientWithCircuitBreaker should not work on an empty project

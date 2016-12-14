@@ -118,11 +118,11 @@ when
 
 then
   fileExists resultFile
-  and fileContains resultFile "package com.atomist.springrest;"
-  and fileContains resultFile consumed_endpoint_address
-  and fileContains resultFile { "interface " + feign_interface }
-  and fileContains resultFile invoking_relative_endpoint_url
-  and fileContains resultFile { "String " + endpoint_invoking_method + "();"}
+    and fileContains resultFile "package com.atomist.springrest;"
+    and fileContains resultFile consumed_endpoint_address
+    and fileContains resultFile { "interface " + feign_interface }
+    and fileContains resultFile invoking_relative_endpoint_url
+    and fileContains resultFile { "String " + endpoint_invoking_method + "();"}
 
 
 scenario AddFeignClient should not work on an empty project
