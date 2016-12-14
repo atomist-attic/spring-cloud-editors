@@ -9,8 +9,9 @@ This [Rug](http://docs.atomist.com/) archive contains editors for [Spring Cloud]
 
 ### AddHystrix
 
-The AddHystrix Editor adds [Hystrix][hystrix] support to an existing [Spring Boot][spring-boot] project.
+The AddHystrix Editor adds [Spring Cloud Hystrix][spring-cloud-hystrix] support to an existing [Spring Boot][spring-boot] project.
 
+[spring-cloud-hystrix]: http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html
 [spring-boot]: https://projects.spring.io/spring-boot/
 
 #### Prerequisites
@@ -38,6 +39,83 @@ $ rug edit atomist-rugs:spring-cloud-editors:AddHystrix
 This will amend your `pom.xml` to include the [Spring Cloud Starter Hystrix][spring-cloud-starter-hystrix] dependency and, if not already present, the [Spring Cloud Dependencies][spring-cloud-dependencies] dependency management section. It will also add the `EnableCircuitBreaker` annotation to the detected class that is annotated with `SpringBootApplication`.
 
 [spring-cloud-starter-hystrix]: https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-hystrix
+[spring-cloud-dependencies]: https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies
+
+
+### AddFeign
+
+The AddFeign Editor adds [Spring Cloud Feign][spring-cloud-feign] support to an existing [Spring Boot][spring-boot] project.
+
+[spring-cloud-feign]: http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html
+[spring-boot]: https://projects.spring.io/spring-boot/
+
+#### Prerequisites
+
+Before running this Editor, you must have the following prerequisites
+satisfied.
+
+*   A git repository
+*   The project must contain a Maven `pom.xml` in its root
+*   The project must contain a class annotated with `SpringBootApplication`
+
+#### Parameters
+
+This Editor has no parameters.
+
+#### Running
+
+Run it as follows:
+
+```
+$ cd to/your/repo
+$ rug edit atomist-rugs:spring-cloud-editors:AddFeign
+```
+
+This will, if not already present, amend your `pom.xml` to include the [Spring Cloud Starter Feign][spring-cloud-starter-feign] dependency and, also if not already present, the [Spring Cloud Dependencies][spring-cloud-dependencies] dependency management section. It will also add the `EnableFeignClients` annotation to the detected class that is annotated with `SpringBootApplication`.
+
+[spring-cloud-starter-feign]: https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-feign
+[spring-cloud-dependencies]: https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies
+
+
+### AddFeignClient
+
+The AddFeignClient Editor adds [Spring Cloud Feign][spring-cloud-feign] support to an existing [Spring Boot][spring-boot] project, including creating a new Feign client interface to consume a microservice.
+
+[spring-cloud-feign]: http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html
+[spring-boot]: https://projects.spring.io/spring-boot/
+
+#### Prerequisites
+
+Before running this Editor, you must have the following prerequisites
+satisfied.
+
+*   A git repository
+*   The project must contain a Maven `pom.xml` in its root
+*   The project must contain a class annotated with `SpringBootApplication`
+
+#### Parameters
+
+To run this editor, you must supply the following parameters:
+
+*   `consumed_endpoint_address`: The root address (i.e. http://localhost) or service name (i.e. mymicroservice) of the service being consumed
+*   `feign_interface`: The name of the new Feign Java interface
+*   `invoking_relative_endpoint_url`: The relative URL to the actual endpoint being invoked on the consumed microservice (i.e. /myendpoint)
+
+#### Running
+
+Run it as follows:
+
+```
+$ cd to/your/repo
+$ rug edit atomist-rugs:spring-cloud-editors:AddFeignClient /
+    consumed_endpoint_address=http://localhost /
+    feign_interface=com.myorg.MyFeignClient /
+    invoking_relative_endpoint_url=/myendpoint
+```
+
+This will, if not already present, amend your `pom.xml` to include the [Spring Cloud Starter Feign][spring-cloud-starter-feign] dependency and, also if not already present, the [Spring Cloud Dependencies][spring-cloud-dependencies] dependency management section. It will also add the `EnableFeignClients` annotation to the detected class that is annotated with `SpringBootApplication`. Finally a new Feign Client Java interface will be generated.
+
+[spring-cloud-starter-feign]: https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-feign
 [spring-cloud-dependencies]: https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-dependencies
 
 ## Support
