@@ -44,7 +44,7 @@ let feign_template = "FeignClientInterface.vm"
 
 AddFeign
 
-with spring.bootProject p begin
+with SpringBootProject p begin
   do merge feign_template to {
     var fullyQualifiedNameOfApplicationClass = p.applicationClassFQN();
     var lastIndexOfPeriod = fullyQualifiedNameOfApplicationClass.lastIndexOf(".");

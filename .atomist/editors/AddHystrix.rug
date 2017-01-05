@@ -32,10 +32,10 @@ let springCloudBuildDependencyManagementContent = """<dependency>
               <scope>import</scope>
             </dependency>"""
 
-with pom when path = "pom.xml" begin
+with Pom when path = "pom.xml" begin
   do addOrReplaceDependency "org.springframework.cloud" "spring-cloud-starter-hystrix"
   do addOrReplaceDependencyManagementDependency "org.springframework.cloud" "spring-cloud-dependencies" springCloudBuildDependencyManagementContent
 end
 
-with spring.bootProject
+with SpringBootProject
   do annotateBootApplication "org.springframework.cloud.client.circuitbreaker" "EnableCircuitBreaker"
