@@ -1,3 +1,6 @@
+# Atomist 'spring-cloud-editors'
+
+[![Build Status](https://travis-ci.org/atomist-rugs/spring-cloud-editors.svg?branch=master)](https://travis-ci.org/atomist-rugs/spring-cloud-editors)
 [![Slack Status](https://join.atomist.com/badge.svg)](https://join.atomist.com)
 
 This [Rug](http://docs.atomist.com/) archive contains editors for [Spring Cloud][spring-cloud] projects.  Take a look inside the
