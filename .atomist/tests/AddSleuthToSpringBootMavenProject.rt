@@ -113,7 +113,6 @@ then
   fileExists "pom.xml"
     and fileContains "pom.xml" "<artifactId>spring-cloud-sleuth-core</artifactId>"
     and fileContains "pom.xml" "<artifactId>spring-cloud-starter-sleuth</artifactId>"
-    and dump "pom.xml"
 
 
 scenario AddSleuthToSpringBootMavenProject should not add Spring Sleuth dependencies if not a Spring Boot project
