@@ -1,0 +1,128 @@
+/*
+ * Copyright © 2016 Atomist, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+scenario AddSleuthToSpringBootMavenProject should add Spring Sleuth dependencies to a Spring Boot project
+
+given
+  pom.xml = """
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>atomist</groupId>
+  <artifactId>spring-boot-sample</artifactId>
+  <version>0.0.1</version>
+  <packaging>jar</packaging>
+
+  <name>spring-rest</name>
+  <description>Atomist Spring Boot start project</description>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.4.1.RELEASE</version>
+    <relativePath /> <!-- lookup parent from repository -->
+  </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java.version>1.8</java.version>
+    <timestamp>${maven.build.timestamp}</timestamp>
+    <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jetty</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>build-info</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
+
+"""
+
+  src/main/java/com/atomist/springrest/SpringRestApplication.java = """
+package com.atomist.springrest;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringRestApplication {
+
+  public static void main(String[] args) {
+      SpringApplication.run(SpringRestApplication.class, args);
+  }
+}
+"""
+
+when
+  AddSleuthToSpringBootMavenProject
+
+then
+  fileExists "pom.xml"
+    and fileContains "pom.xml" "<artifactId>spring-cloud-sleuth-core</artifactId>"
+    and fileContains "pom.xml" "<artifactId>spring-cloud-starter-sleuth</artifactId>"
+    and dump "pom.xml"
+
+
+scenario AddSleuthToSpringBootMavenProject should not add Spring Sleuth dependencies if not a Spring Boot project
+
+given
+  Empty
+
+when
+  AddFeign
+
+then
+  NoChange

@@ -1,0 +1,44 @@
+/*
+ * Copyright © 2016 Atomist, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+@description "Adds Spring Cloud Sleuth to am existing Spring Boot project"
+@tag "spring"
+@tag "spring-boot"
+@tag "spring-cloud"
+@tag "maven"
+@tag "java"
+editor AddSleuthToSpringBootMavenProject
+
+precondition IsSpringBoot
+precondition IsMaven
+
+let spring_sleuth_core_dependency = """<dependency>
+<groupId>org.springframework.cloud</groupId>
+<artifactId>spring-cloud-sleuth-core</artifactId>
+</dependency>
+"""
+
+let spring_sleuth_starter_dependency = """<dependency>
+   <groupId>org.springframework.cloud</groupId>
+   <artifactId>spring-cloud-starter-sleuth</artifactId>
+</dependency>
+"""
+
+with Pom
+  begin
+    do addOrReplaceDependency "org.springframework.cloud" "spring-cloud-sleuth-core"
+    do addOrReplaceDependency "org.springframework.cloud" "spring-cloud-starter-sleuth"
+  end

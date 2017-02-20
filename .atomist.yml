@@ -44,3 +44,48 @@ executor:
     branch: "n/a"
     sha: "n/a"
 
+---
+kind: "operation"
+client: "rug-cli 0.23.0"
+editor:
+  name: "atomist-rugs.rug-editors.AddRugEditor"
+  group: "atomist-rugs"
+  artifact: "rug-editors"
+  version: "0.10.0"
+  origin:
+    repo: "git@github.com:atomist-rugs/rug-editors.git"
+    branch: "addHandlerEditor"
+    sha: "b8650ae"
+  parameters:
+    - "editor_name": "AddSleuth"
+
+---
+kind: "operation"
+client: "rug-cli 0.23.0"
+editor:
+  name: "atomist-rugs.rug-editors.AddAtomistCopyrightToRug"
+  group: "atomist-rugs"
+  artifact: "rug-editors"
+  version: "0.10.0"
+  origin:
+    repo: "git@github.com:atomist-rugs/rug-editors.git"
+    branch: "addHandlerEditor"
+    sha: "4710877"
+  parameters:
+    - "path_and_filename": ".atomist/editors/AddSleuth.rug"
+
+---
+kind: "operation"
+client: "rug-cli 0.23.0"
+editor:
+  name: "atomist-rugs.rug-editors.AddAtomistCopyrightToRug"
+  group: "atomist-rugs"
+  artifact: "rug-editors"
+  version: "0.10.0"
+  origin:
+    repo: "git@github.com:atomist-rugs/rug-editors.git"
+    branch: "addHandlerEditor"
+    sha: "4710877"
+  parameters:
+    - "path_and_filename": ".atomist/tests/AddSleuth.rt"
+
